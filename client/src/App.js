@@ -1,9 +1,15 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import AuctionRoom from "./pages/AuctionRoom";
+
 function App() {
   return (
-    <div>
-      <h1>🏏 IPL Mock Auction Arena</h1>
-      <p>Welcome to the future IPL Auction Platform</p>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/room/:roomId" element={<AuctionRoom />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
