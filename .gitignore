@@ -1,4 +1,20 @@
-node_modules
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Environment Variables
 .env
-build
-dist
+server/.env
+
+# Build Files
+build/
+dist/
+client/build/
+
+# Logs
+npm-debug.log*
+
+# OS Files
+.DS_Store
+Thumbs.db
