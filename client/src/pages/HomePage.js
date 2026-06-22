@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { v4 as uuid } from "uuid";
+import "../styles/HomePage.css";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -10,77 +10,48 @@ function HomePage() {
 
   const createRoom = () => {
     if (!username || !teamName) {
-      alert("Fill all fields");
+      alert("Please fill all fields");
       return;
     }
 
-    const roomId = uuid().substring(0, 6);
+    const roomId = Math.random()
+      .toString(36)
+      .substring(2, 8)
+      .toUpperCase();
 
     navigate(`/room/${roomId}`, {
       state: {
         username,
-        teamName
-      }
+        teamName,
+      },
     });
   };
 
-return (
-  <div
-    style={{
-      minHeight: "100vh",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      background: "linear-gradient(135deg,#0f172a,#1e293b)",
-      color: "white"
-    }}
-  >
-    <div
-      style={{
-        width: "400px",
-        padding: "30px",
-        borderRadius: "20px",
-        background: "#1e293b",
-        boxShadow: "0 0 20px rgba(0,0,0,0.4)"
-      }}
-    >
-      <h1>🏏 IPL Mock Auction Arena</h1>
+  return (
+    <div className="home-container">
+      <div className="card">
+        <h1>🏏 IPL Mock Auction Arena</h1>
 
-      <input
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        style={{
-          width: "100%",
-          padding: "10px",
-          marginBottom: "15px"
-        }}
-      />
+        <input
+          type="text"
+          placeholder="Enter Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
 
-      <input
-        placeholder="Team Name"
-        value={teamName}
-        onChange={(e) => setTeamName(e.target.value)}
-        style={{
-          width: "100%",
-          padding: "10px",
-          marginBottom: "15px"
-        }}
-      />
+        <input
+          type="text"
+          placeholder="Enter Team Name"
+          value={teamName}
+          onChange={(e) => setTeamName(e.target.value)}
+        />
 
-      <button
-        onClick={createRoom}
-        style={{
-          width: "100%",
-          padding: "12px",
-          cursor: "pointer"
-        }}
-      >
-        Create Auction Room
-      </button>
+        <button onClick={createRoom}>
+          Create Auction Room
+        </button>
+      </div>
     </div>
-  </div>
-);
+  );
 }
 
 export default HomePage;
